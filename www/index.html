@@ -3,20 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>آرشیو ۴۰۴ | بازی کارآگاهی گوشی گمشده</title>
+<title>آرشیو ۴۰۴ | نسخه ۳.۰</title>
 <style>
   :root {
     --bg: #04060e;
     --navy: #0a1124;
     --glass: rgba(255, 255, 255, 0.065);
-    --glass-hi: rgba(255, 255, 255, 0.11);
-    --glass-border: rgba(255, 255, 255, 0.13);
+    --glass-hi: rgba(255, 255, 255, 0.12);
+    --glass-border: rgba(255, 255, 255, 0.14);
     --accent: #3b82f6;
     --accent-2: #8b5cf6;
     --accent-glow: rgba(59, 130, 246, 0.45);
     --danger: #ef4444;
     --success: #10b981;
     --warning: #f59e0b;
+    --uv: #a855f7;
     --text: #f8fafc;
     --muted: #94a3b8;
   }
@@ -54,7 +55,6 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: background 0.5s ease;
   }
 
   @media (min-width: 500px) {
@@ -68,27 +68,20 @@
 
   /* ================= MAIN MENU ================= */
   #main-menu {
-    position: absolute;
-    inset: 0;
-    z-index: 100;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
+    position: absolute; inset: 0; z-index: 100;
+    display: flex; flex-direction: column; overflow: hidden;
   }
-
   .menu-hero {
-    padding: 22px 18px 14px;
-    background: linear-gradient(to bottom, rgba(10,17,36,0.88), rgba(10,17,36,0.35));
+    padding: 20px 18px 14px;
+    background: linear-gradient(to bottom, rgba(10,17,36,0.9), rgba(10,17,36,0.4));
     backdrop-filter: blur(22px);
     border-bottom: 1px solid var(--glass-border);
   }
-  .brand-row {
-    display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;
-  }
-  .brand-title { font-size: 21px; font-weight: 900; letter-spacing: -0.3px; }
-  .brand-sub { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
+  .brand-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+  .brand-title { font-size: 21px; font-weight: 900; }
+  .brand-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
   .rank-badge {
-    background: linear-gradient(135deg, rgba(59,130,246,0.22), rgba(139,92,246,0.25));
+    background: linear-gradient(135deg, rgba(59,130,246,0.22), rgba(139,92,246,0.28));
     border: 1px solid rgba(139,92,246,0.45);
     padding: 6px 11px; border-radius: 14px; text-align: center;
   }
@@ -101,27 +94,18 @@
   }
   .progress-top { display: flex; justify-content: space-between; font-size: 11.5px; color: #cbd5e1; margin-bottom: 6px; }
   .progress-bar { height: 7px; background: rgba(255,255,255,0.08); border-radius: 10px; overflow: hidden; }
-  .progress-fill {
-    height: 100%; width: 0%;
-    background: linear-gradient(90deg, var(--accent), var(--accent-2));
-    border-radius: 10px; transition: width 0.4s ease;
-  }
+  .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); border-radius: 10px; transition: width 0.4s ease; }
 
-  .filter-bar {
-    display: flex; gap: 8px; overflow-x: auto; padding: 12px 16px 8px;
-    flex-shrink: 0;
-  }
+  .filter-bar { display: flex; gap: 8px; overflow-x: auto; padding: 12px 16px 8px; flex-shrink: 0; }
   .filter-bar::-webkit-scrollbar { display: none; }
   .chip {
     white-space: nowrap; padding: 7px 14px; border-radius: 14px;
     background: var(--glass); border: 1px solid var(--glass-border);
     color: var(--muted); font-size: 12px; font-weight: 600; cursor: pointer;
-    transition: 0.2s;
   }
   .chip.active {
     background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    color: #fff; border-color: transparent;
-    box-shadow: 0 4px 15px var(--accent-glow);
+    color: #fff; border-color: transparent; box-shadow: 0 4px 15px var(--accent-glow);
   }
 
   .cases-list {
@@ -132,39 +116,26 @@
   .cases-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.16); border-radius: 4px; }
 
   .case-card {
-    position: relative;
-    background: var(--glass);
-    backdrop-filter: blur(18px);
-    border: 1px solid var(--glass-border);
-    border-radius: 20px;
-    padding: 14px 15px;
-    cursor: pointer;
-    transition: transform 0.14s, border-color 0.2s, background 0.2s;
-    overflow: hidden;
+    position: relative; background: var(--glass); backdrop-filter: blur(18px);
+    border: 1px solid var(--glass-border); border-radius: 20px;
+    padding: 14px 15px; cursor: pointer; transition: 0.15s; overflow: hidden;
   }
-  .case-card::before {
-    content: ''; position: absolute; top: 0; right: 0; width: 4px; height: 100%;
-    background: var(--card-accent, var(--accent));
-  }
+  .case-card::before { content: ''; position: absolute; top: 0; right: 0; width: 4px; height: 100%; background: var(--card-accent, var(--accent)); }
   .case-card:active { transform: scale(0.98); background: var(--glass-hi); }
   .case-card.solved { border-color: rgba(16,185,129,0.45); }
-  .case-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; gap: 8px; }
+  .case-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
   .case-num { font-size: 11px; color: var(--muted); font-weight: 700; }
   .case-title { font-size: 15px; font-weight: 800; color: #fff; margin-bottom: 5px; }
   .case-hook { font-size: 12.5px; color: #cbd5e1; line-height: 1.65; margin-bottom: 10px; }
   .case-foot { display: flex; justify-content: space-between; align-items: center; font-size: 11px; }
 
   /* ================= PHONE OS ================= */
-  #phone-os {
-    position: absolute; inset: 0; display: none; flex-direction: column;
-  }
+  #phone-os { position: absolute; inset: 0; display: none; flex-direction: column; }
   #phone-os.active { display: flex; }
 
   .status-bar {
-    height: 36px; padding: 0 16px;
-    display: flex; justify-content: space-between; align-items: center;
-    font-size: 12px; z-index: 50;
-    background: rgba(4, 6, 14, 0.45); backdrop-filter: blur(14px);
+    height: 36px; padding: 0 16px; display: flex; justify-content: space-between; align-items: center;
+    font-size: 12px; z-index: 50; background: rgba(4, 6, 14, 0.45); backdrop-filter: blur(14px);
     direction: ltr; flex-shrink: 0;
   }
   .status-left { display: flex; align-items: center; gap: 8px; }
@@ -178,7 +149,6 @@
   .battery-fill { width: 20%; height: 100%; background: var(--danger); animation: blink 1.8s infinite; }
   @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.35} }
 
-  /* Notification Banner */
   #notif-banner {
     position: absolute; top: -130px; left: 12px; right: 12px; z-index: 250;
     background: rgba(12, 18, 34, 0.94); backdrop-filter: blur(22px);
@@ -190,7 +160,6 @@
   .notif-head { display: flex; justify-content: space-between; font-size: 11px; color: var(--accent); font-weight: 800; margin-bottom: 4px; }
   .notif-body { font-size: 12.5px; line-height: 1.55; color: #f1f5f9; }
 
-  /* Case Briefing Overlay */
   #briefing-overlay {
     position: absolute; inset: 0; z-index: 180;
     background: radial-gradient(circle at top, #0f172a 0%, #03050a 80%);
@@ -199,26 +168,61 @@
   }
   #briefing-overlay.show { display: flex; }
 
-  .screen {
-    position: absolute; inset: 36px 0 0 0;
-    display: none; flex-direction: column; overflow: hidden;
-    animation: fadeIn 0.22s ease;
+  /* ================= INCOMING LIVE CALL SCREEN ================= */
+  #incoming-call {
+    position: absolute; inset: 0; z-index: 300;
+    background: radial-gradient(circle at 50% 25%, rgba(239, 68, 68, 0.25), rgba(4, 6, 14, 0.96) 70%);
+    backdrop-filter: blur(26px);
+    display: none; flex-direction: column; justify-content: space-between; align-items: center;
+    padding: 60px 24px 44px; text-align: center;
   }
+  #incoming-call.show { display: flex; animation: fadeIn 0.25s ease; }
+  .caller-avatar {
+    width: 96px; height: 96px; border-radius: 50%;
+    background: rgba(239,68,68,0.18); border: 2px solid var(--danger);
+    display: flex; justify-content: center; align-items: center; font-size: 42px;
+    margin: 0 auto 16px;
+    box-shadow: 0 0 0 0 rgba(239,68,68,0.6);
+    animation: pulseRing 1.4s infinite;
+  }
+  @keyframes pulseRing {
+    0% { box-shadow: 0 0 0 0 rgba(239,68,68,0.65); }
+    70% { box-shadow: 0 0 0 26px rgba(239,68,68,0); }
+    100% { box-shadow: 0 0 0 0 rgba(239,68,68,0); }
+  }
+  .call-actions { display: flex; gap: 46px; align-items: center; }
+  .call-circle {
+    width: 68px; height: 68px; border-radius: 50%; border: none;
+    color: #fff; font-size: 26px; cursor: pointer;
+    display: flex; justify-content: center; align-items: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5); transition: transform 0.12s;
+  }
+  .call-circle:active { transform: scale(0.92); }
+  .call-accept { background: var(--success); }
+  .call-decline { background: var(--danger); }
+
+  .live-dialogue-box {
+    width: 100%; background: rgba(15, 23, 42, 0.85); border: 1px solid var(--glass-border);
+    border-radius: 20px; padding: 15px; text-align: right; margin: 14px 0;
+  }
+  .reply-btn {
+    width: 100%; padding: 11px 14px; margin-top: 8px; border-radius: 13px;
+    background: var(--glass); border: 1px solid var(--accent); color: #fff;
+    font-size: 12.5px; text-align: right; cursor: pointer;
+  }
+  .reply-btn:active { background: color-mix(in srgb, var(--accent) 35%, transparent); }
+
+  /* ================= SCREENS ================= */
+  .screen { position: absolute; inset: 36px 0 0 0; display: none; flex-direction: column; overflow: hidden; animation: fadeIn 0.22s ease; }
   .screen.active { display: flex; }
   @keyframes fadeIn { from { opacity: 0; transform: scale(0.985); } to { opacity: 1; transform: scale(1); } }
 
   /* Lock Screen */
-  #lock-screen {
-    justify-content: space-between; padding: 18px 20px 26px; align-items: center;
-    background: rgba(4, 6, 14, 0.42); backdrop-filter: blur(10px);
-  }
+  #lock-screen { justify-content: space-between; padding: 18px 20px 26px; align-items: center; background: rgba(4, 6, 14, 0.42); backdrop-filter: blur(10px); }
   .lock-clock { text-align: center; margin-top: 4px; }
   .lock-time { font-size: 52px; font-weight: 200; letter-spacing: 2px; direction: ltr; }
   .lock-date { font-size: 12.5px; color: var(--muted); }
-  .lock-notif {
-    width: 100%; background: var(--glass); backdrop-filter: blur(20px);
-    border: 1px solid var(--glass-border); border-radius: 18px; padding: 12px 14px;
-  }
+  .lock-notif { width: 100%; background: var(--glass); backdrop-filter: blur(20px); border: 1px solid var(--glass-border); border-radius: 18px; padding: 12px 14px; }
   .lock-notif-title { display: flex; justify-content: space-between; font-size: 12px; color: var(--accent); font-weight: 700; margin-bottom: 5px; }
   .lock-notif-text { font-size: 12.5px; line-height: 1.65; color: #e2e8f0; }
 
@@ -231,79 +235,41 @@
 
   .keypad { display: grid; grid-template-columns: repeat(3, 66px); gap: 10px 18px; direction: ltr; }
   .key {
-    width: 66px; height: 52px; border-radius: 17px;
-    background: var(--glass); border: 1px solid var(--glass-border);
-    color: #fff; font-size: 20px; font-weight: 500;
-    display: flex; justify-content: center; align-items: center;
-    cursor: pointer; backdrop-filter: blur(14px); transition: 0.1s;
+    width: 66px; height: 52px; border-radius: 17px; background: var(--glass); border: 1px solid var(--glass-border);
+    color: #fff; font-size: 20px; display: flex; justify-content: center; align-items: center; cursor: pointer;
   }
   .key:active { background: color-mix(in srgb, var(--accent) 40%, transparent); transform: scale(0.93); }
   .key.action { font-size: 13px; color: var(--muted); }
 
   /* Home Screen */
   #home-screen { padding: 18px 16px 22px; justify-content: space-between; }
-  .home-widget {
-    background: var(--glass); backdrop-filter: blur(22px);
-    border: 1px solid var(--glass-border); border-radius: 22px;
-    padding: 15px 16px; margin-bottom: 16px;
-  }
+  .home-widget { background: var(--glass); backdrop-filter: blur(22px); border: 1px solid var(--glass-border); border-radius: 22px; padding: 15px 16px; margin-bottom: 16px; }
   .widget-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
   .widget-title { font-size: 13px; color: var(--accent); font-weight: 800; }
-  .clue-pill {
-    font-size: 11.5px; background: color-mix(in srgb, var(--accent) 20%, transparent);
-    border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
-    color: #e2e8f0; padding: 3px 10px; border-radius: 12px; font-weight: 700;
-  }
+  .clue-pill { font-size: 11.5px; background: color-mix(in srgb, var(--accent) 20%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent); color: #e2e8f0; padding: 3px 10px; border-radius: 12px; font-weight: 700; }
   .widget-desc { font-size: 12px; color: var(--muted); line-height: 1.65; }
 
-  .app-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 18px 12px; padding: 4px; flex: 1; align-content: start;
-  }
+  .app-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px 12px; padding: 4px; flex: 1; align-content: start; }
   .app-icon-wrap { display: flex; flex-direction: column; align-items: center; gap: 6px; cursor: pointer; }
   .app-icon {
-    width: 62px; height: 62px; border-radius: 20px;
-    background: var(--glass); backdrop-filter: blur(20px);
-    border: 1px solid var(--glass-border);
-    display: flex; justify-content: center; align-items: center;
-    font-size: 27px; position: relative;
-    box-shadow: 0 10px 24px rgba(0,0,0,0.35); transition: 0.14s;
+    width: 62px; height: 62px; border-radius: 20px; background: var(--glass); backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border); display: flex; justify-content: center; align-items: center;
+    font-size: 27px; position: relative; box-shadow: 0 10px 24px rgba(0,0,0,0.35); transition: 0.14s;
   }
   .app-icon-wrap:active .app-icon { transform: scale(0.92); border-color: var(--accent); }
   .app-label { font-size: 11.5px; color: #e2e8f0; text-align: center; font-weight: 600; }
-  .badge {
-    position: absolute; top: -5px; left: -5px; background: var(--danger); color: #fff;
-    font-size: 10.5px; font-weight: 700; min-width: 19px; height: 19px; border-radius: 10px;
-    display: flex; justify-content: center; align-items: center; padding: 0 5px;
-  }
+  .badge { position: absolute; top: -5px; left: -5px; background: var(--danger); color: #fff; font-size: 10.5px; font-weight: 700; min-width: 19px; height: 19px; border-radius: 10px; display: flex; justify-content: center; align-items: center; padding: 0 5px; }
+  .dock { background: var(--glass); backdrop-filter: blur(24px); border: 1px solid var(--glass-border); border-radius: 24px; padding: 11px 14px; display: flex; justify-content: space-around; align-items: center; }
 
-  .dock {
-    background: var(--glass); backdrop-filter: blur(24px);
-    border: 1px solid var(--glass-border); border-radius: 24px;
-    padding: 11px 14px; display: flex; justify-content: space-around; align-items: center;
-  }
-
-  /* Apps Common */
-  .app-header {
-    padding: 13px 15px; display: flex; align-items: center; justify-content: space-between;
-    background: rgba(10, 17, 36, 0.78); backdrop-filter: blur(18px);
-    border-bottom: 1px solid var(--glass-border); flex-shrink: 0;
-  }
+  /* Common App Layout */
+  .app-header { padding: 13px 15px; display: flex; align-items: center; justify-content: space-between; background: rgba(10, 17, 36, 0.78); backdrop-filter: blur(18px); border-bottom: 1px solid var(--glass-border); flex-shrink: 0; }
   .app-header h2 { font-size: 15.5px; font-weight: 800; }
-  .back-btn {
-    background: var(--glass); border: 1px solid var(--glass-border);
-    color: var(--text); padding: 6px 12px; border-radius: 12px; font-size: 12px; cursor: pointer;
-  }
+  .back-btn { background: var(--glass); border: 1px solid var(--glass-border); color: var(--text); padding: 6px 12px; border-radius: 12px; font-size: 12px; cursor: pointer; }
   .app-content { flex: 1; overflow-y: auto; padding: 14px; padding-bottom: 68px; }
   .app-content::-webkit-scrollbar { width: 4px; }
   .app-content::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.18); border-radius: 4px; }
 
-  .card {
-    background: var(--glass); backdrop-filter: blur(16px);
-    border: 1px solid var(--glass-border); border-radius: 18px;
-    padding: 13px 14px; margin-bottom: 11px; cursor: pointer; transition: 0.15s;
-  }
-  .card:active { background: var(--glass-hi); }
+  .card { background: var(--glass); backdrop-filter: blur(16px); border: 1px solid var(--glass-border); border-radius: 18px; padding: 13px 14px; margin-bottom: 11px; cursor: pointer; }
   .card-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; gap: 8px; }
   .card-title { font-size: 14px; font-weight: 700; color: #fff; }
   .card-meta { font-size: 11px; color: var(--muted); }
@@ -316,42 +282,102 @@
   .msg.out { align-self: flex-end; background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 80%, transparent), color-mix(in srgb, var(--accent-2) 70%, transparent)); border-bottom-left-radius: 4px; }
   .msg-time { display: block; font-size: 10px; color: rgba(255,255,255,0.62); margin-top: 4px; text-align: left; }
 
-  /* Gallery */
+  /* ================= UV GALLERY ================= */
   .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 11px; }
   .photo-thumb { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 16px; overflow: hidden; cursor: pointer; }
   .photo-thumb svg { width: 100%; height: 120px; display: block; }
   .photo-caption { padding: 8px; font-size: 11.5px; color: #e2e8f0; text-align: center; font-weight: 600; }
 
-  /* Phone / Dialer */
+  .uv-stage {
+    position: relative; border-radius: 14px; overflow: hidden;
+    border: 1px solid var(--glass-border); margin-bottom: 10px;
+    touch-action: none; cursor: crosshair;
+  }
+  .uv-base { transition: filter 0.3s; }
+  .uv-stage.uv-on .uv-base { filter: brightness(0.28) contrast(1.25) hue-rotate(15deg); }
+  .uv-hidden-layer {
+    position: absolute; inset: 0; pointer-events: none; opacity: 0;
+    background: radial-gradient(circle at center, rgba(168,85,247,0.32), rgba(15,6,35,0.85));
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center; padding: 14px;
+    clip-path: circle(0px at 50% 50%);
+    transition: opacity 0.25s;
+  }
+  .uv-stage.uv-on .uv-hidden-layer { opacity: 1; }
+  .uv-glow-text {
+    color: #e879f9; font-weight: 900; font-size: 13.5px;
+    text-shadow: 0 0 12px #d946ef, 0 0 22px #a855f7;
+    letter-spacing: 0.5px;
+  }
+  .uv-ring {
+    position: absolute; width: 110px; height: 110px; border-radius: 50%;
+    border: 2px solid rgba(192,132,252,0.85);
+    box-shadow: 0 0 24px rgba(168,85,247,0.75), inset 0 0 20px rgba(168,85,247,0.45);
+    pointer-events: none; transform: translate(-50%, -50%); display: none;
+  }
+  .uv-stage.uv-on .uv-ring { display: block; }
+  .uv-btn {
+    width: 100%; padding: 9px; border-radius: 12px; margin-bottom: 10px;
+    background: rgba(168,85,247,0.16); border: 1px solid rgba(168,85,247,0.5);
+    color: #e9d5ff; font-size: 12.5px; font-weight: 700; cursor: pointer;
+  }
+  .uv-btn.active { background: linear-gradient(135deg, #9333ea, #6366f1); color: #fff; box-shadow: 0 0 18px rgba(168,85,247,0.55); }
+
+  /* ================= HACKING MINI-GAME ================= */
+  .hack-panel {
+    background: rgba(5, 10, 22, 0.92); border: 1px solid rgba(16,185,129,0.45);
+    border-radius: 20px; padding: 16px; text-align: center;
+  }
+  .hack-title { color: #34d399; font-size: 14.5px; font-weight: 800; margin-bottom: 6px; }
+  .hack-layers { display: flex; justify-content: center; gap: 10px; margin: 12px 0; }
+  .hack-dot {
+    width: 34px; height: 10px; border-radius: 6px;
+    background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+  }
+  .hack-dot.done { background: var(--success); border-color: #6ee7b7; box-shadow: 0 0 12px rgba(16,185,129,0.7); }
+  .hack-track {
+    position: relative; width: 100%; height: 34px; border-radius: 12px;
+    background: rgba(0,0,0,0.55); border: 1px solid rgba(52,211,153,0.35);
+    margin: 16px 0; overflow: hidden; direction: ltr;
+  }
+  .hack-zone {
+    position: absolute; top: 0; bottom: 0;
+    background: rgba(16, 185, 129, 0.32);
+    border-left: 2px solid #34d399; border-right: 2px solid #34d399;
+  }
+  .hack-cursor {
+    position: absolute; top: 3px; bottom: 3px; width: 8px; border-radius: 4px;
+    background: #f8fafc; box-shadow: 0 0 14px #38bdf8;
+  }
+  .hack-log {
+    font-family: monospace; font-size: 11px; color: #6ee7b7;
+    background: rgba(0,0,0,0.45); border-radius: 10px; padding: 8px;
+    margin-bottom: 12px; direction: ltr; text-align: left; min-height: 36px;
+  }
+
+  /* Phone / Map / Misc */
   .tabs { display: flex; gap: 8px; margin-bottom: 13px; }
   .tab { flex: 1; text-align: center; padding: 9px; border-radius: 12px; background: var(--glass); border: 1px solid var(--glass-border); font-size: 12.5px; cursor: pointer; color: var(--muted); }
   .tab.active { background: color-mix(in srgb, var(--accent) 28%, transparent); border-color: var(--accent); color: #fff; font-weight: 700; }
   .dial-display { text-align: center; font-size: 24px; letter-spacing: 3px; height: 44px; line-height: 44px; margin-bottom: 12px; direction: ltr; color: #fff; background: rgba(0,0,0,0.3); border-radius: 14px; border: 1px solid var(--glass-border); }
   .call-btn { width: 100%; margin-top: 12px; padding: 12px; border-radius: 15px; background: var(--success); color: #fff; border: none; font-size: 14.5px; font-weight: 700; cursor: pointer; }
 
-  /* Radar Map */
   .map-box { position: relative; width: 100%; height: 255px; background: radial-gradient(circle at center, #0f1c38 0%, #050914 100%); border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent); border-radius: 20px; overflow: hidden; margin-bottom: 13px; }
   .radar-ring { position: absolute; border: 1px solid rgba(59,130,246,0.18); border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%,-50%); }
   .map-pin { position: absolute; transform: translate(-50%, -50%); background: rgba(12,18,34,0.92); border: 2px solid var(--accent); color: #fff; font-size: 11px; padding: 4px 8px; border-radius: 10px; cursor: pointer; white-space: nowrap; }
   .map-pin.danger { border-color: var(--danger); box-shadow: 0 0 14px rgba(239,68,68,0.65); }
 
-  /* Audio Wave */
   .wave-box { display: flex; justify-content: center; align-items: center; gap: 4px; height: 34px; margin: 10px 0; }
   .wave-bar { width: 4px; background: var(--accent); border-radius: 4px; animation: wave 0.9s infinite ease-in-out; }
   @keyframes wave { 0%,100%{height:8px;opacity:0.45} 50%{height:30px;opacity:1} }
 
-  /* Buttons, Tags, Inputs */
   .btn-primary {
-    background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    color: #fff; border: none; padding: 13px 24px; border-radius: 15px;
-    font-size: 14.5px; font-weight: 700; cursor: pointer;
-    box-shadow: 0 8px 22px var(--accent-glow); transition: 0.14s;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; border: none;
+    padding: 13px 24px; border-radius: 15px; font-size: 14.5px; font-weight: 700; cursor: pointer;
+    box-shadow: 0 8px 22px var(--accent-glow);
   }
   .btn-primary:active { transform: scale(0.96); }
-  .btn-ghost {
-    background: var(--glass); border: 1px solid var(--glass-border);
-    color: #cbd5e1; padding: 11px 20px; border-radius: 14px; font-size: 13px; cursor: pointer;
-  }
+  .btn-ghost { background: var(--glass); border: 1px solid var(--glass-border); color: #cbd5e1; padding: 11px 20px; border-radius: 14px; font-size: 13px; cursor: pointer; }
 
   .tag { display: inline-block; font-size: 10.5px; padding: 2px 8px; border-radius: 8px; background: rgba(139,92,246,0.22); color: #ddd6fe; border: 1px solid rgba(139,92,246,0.4); font-weight: 600; }
   .tag.red { background: rgba(239,68,68,0.2); color: #fecaca; border-color: rgba(239,68,68,0.45); }
@@ -360,28 +386,21 @@
   .tag.amber { background: rgba(245,158,11,0.2); color: #fde68a; border-color: rgba(245,158,11,0.45); }
 
   .pin-input-box {
-    width: 100%; padding: 12px; border-radius: 14px; text-align: center;
-    font-size: 20px; letter-spacing: 6px; direction: ltr;
-    background: rgba(0,0,0,0.38); border: 1px solid var(--accent); color: #fff; margin: 12px 0;
+    width: 100%; padding: 12px; border-radius: 14px; text-align: center; font-size: 20px; letter-spacing: 6px;
+    direction: ltr; background: rgba(0,0,0,0.38); border: 1px solid var(--accent); color: #fff; margin: 12px 0;
   }
-
   .form-group { margin-bottom: 13px; }
   .form-group label { display: block; font-size: 12.5px; color: #bfdbfe; margin-bottom: 6px; font-weight: 700; }
   .form-group select { width: 100%; padding: 10px; border-radius: 12px; background: rgba(12,18,34,0.92); color: #fff; border: 1px solid var(--glass-border); font-size: 13px; }
 
   #modal {
-    position: absolute; inset: 0; z-index: 220;
-    background: rgba(3, 5, 12, 0.88); backdrop-filter: blur(18px);
-    display: none; flex-direction: column; justify-content: center; align-items: center; padding: 18px;
+    position: absolute; inset: 0; z-index: 220; background: rgba(3, 5, 12, 0.88);
+    backdrop-filter: blur(18px); display: none; flex-direction: column; justify-content: center; align-items: center; padding: 18px;
   }
   #modal.show { display: flex; }
-  .modal-box { width: 100%; max-height: 86%; overflow-y: auto; background: rgba(12,18,34,0.95); border: 1px solid var(--glass-border); border-radius: 24px; padding: 18px; }
+  .modal-box { width: 100%; max-height: 88%; overflow-y: auto; background: rgba(12,18,34,0.96); border: 1px solid var(--glass-border); border-radius: 24px; padding: 18px; }
 
-  .home-bar-wrap {
-    position: absolute; bottom: 0; left: 0; right: 0; height: 32px;
-    display: flex; justify-content: center; align-items: center;
-    background: linear-gradient(to top, rgba(4,6,14,0.92), transparent); z-index: 60; cursor: pointer;
-  }
+  .home-bar-wrap { position: absolute; bottom: 0; left: 0; right: 0; height: 32px; display: flex; justify-content: center; align-items: center; background: linear-gradient(to top, rgba(4,6,14,0.92), transparent); z-index: 60; cursor: pointer; }
   .home-bar { width: 118px; height: 5px; background: rgba(255,255,255,0.42); border-radius: 10px; }
 </style>
 </head>
@@ -393,8 +412,8 @@
     <div class="menu-hero">
       <div class="brand-row">
         <div>
-          <div class="brand-title">🕵️‍♂️ آرشیو ۴۰۴</div>
-          <div class="brand-sub">۲۲ پرونده واقعی‌نما روی گوشی‌های گمشده</div>
+          <div class="brand-title">🕵️‍♂️ آرشیو ۴۰۴ <span style="font-size:11px;color:var(--accent);">v3.0</span></div>
+          <div class="brand-sub">۲۲ پرونده • نور UV • هک فایروال • تماس زنده</div>
         </div>
         <div class="rank-badge">
           <span class="rank-name" id="rank-name">کارآموز</span>
@@ -403,18 +422,17 @@
       </div>
       <div class="progress-wrap">
         <div class="progress-top">
-          <span>پیشرفت کل پرونده‌ها</span>
+          <span>پیشرفت کل آرشیو</span>
           <strong id="solved-text">0 از 22 حل‌شده</strong>
         </div>
         <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
       </div>
     </div>
-
     <div class="filter-bar" id="filter-bar"></div>
     <div class="cases-list" id="cases-list"></div>
   </div>
 
-  <!-- ================= BRIEFING OVERLAY ================= -->
+  <!-- ================= BRIEFING ================= -->
   <div id="briefing-overlay">
     <div id="brief-cat" class="tag blue" style="margin-bottom:12px;">پرونده</div>
     <h1 id="brief-title" style="font-size:23px;margin-bottom:12px;font-weight:900;"></h1>
@@ -423,6 +441,43 @@
       <button class="btn-primary" style="flex:1;" onclick="enterPhoneOS()">روشن کردن گوشی</button>
       <button class="btn-ghost" onclick="closeBriefing()">بازگشت</button>
     </div>
+  </div>
+
+  <!-- ================= LIVE INCOMING CALL ================= -->
+  <div id="incoming-call">
+    <div>
+      <div class="caller-avatar" id="call-avatar">👤</div>
+      <div class="tag red" id="call-status-tag" style="margin-bottom:8px;">تماس ورودی ناشناس...</div>
+      <h2 id="call-name" style="font-size:22px;margin-bottom:4px;">شماره مخفی</h2>
+      <div id="call-timer" style="font-size:14px;color:var(--muted);direction:ltr;">Private Number</div>
+    </div>
+
+    <div id="call-dialogue-area" style="width:100%;display:none;">
+      <div class="wave-box">
+        <div class="wave-bar" style="animation-delay:0s"></div>
+        <div class="wave-bar" style="animation-delay:0.15s"></div>
+        <div class="wave-bar" style="animation-delay:0.3s"></div>
+        <div class="wave-bar" style="animation-delay:0.45s"></div>
+        <div class="wave-bar" style="animation-delay:0.2s"></div>
+      </div>
+      <div class="live-dialogue-box">
+        <div id="call-speech" style="font-size:13px;line-height:1.85;color:#f1f5f9;"></div>
+        <div id="call-choices"></div>
+      </div>
+    </div>
+
+    <div class="call-actions" id="call-ring-btns">
+      <div>
+        <button class="call-circle call-accept" onclick="answerLiveCall()">📞</button>
+        <div style="font-size:12px;margin-top:8px;color:#6ee7b7;">پاسخ</div>
+      </div>
+      <div>
+        <button class="call-circle call-decline" onclick="declineLiveCall()">✖</button>
+        <div style="font-size:12px;margin-top:8px;color:#fca5a5;">رد تماس</div>
+      </div>
+    </div>
+
+    <button class="call-circle call-decline" id="call-hangup-btn" style="display:none;" onclick="endLiveCall()">✖</button>
   </div>
 
   <!-- ================= PHONE OS ================= -->
@@ -454,10 +509,7 @@
         <div class="lock-date" id="lock-date">پنج‌شنبه</div>
       </div>
       <div class="lock-notif">
-        <div class="lock-notif-title">
-          <span id="lock-sender">💬 پیام جدید</span>
-          <span>تازگی</span>
-        </div>
+        <div class="lock-notif-title"><span id="lock-sender">💬 پیام جدید</span><span>تازگی</span></div>
         <div class="lock-notif-text" id="lock-notif-text"></div>
       </div>
       <div class="pin-area">
@@ -466,18 +518,10 @@
           <div class="pin-dot"></div><div class="pin-dot"></div><div class="pin-dot"></div><div class="pin-dot"></div>
         </div>
         <div class="keypad">
-          <div class="key" onclick="enterLockDigit('1')">1</div>
-          <div class="key" onclick="enterLockDigit('2')">2</div>
-          <div class="key" onclick="enterLockDigit('3')">3</div>
-          <div class="key" onclick="enterLockDigit('4')">4</div>
-          <div class="key" onclick="enterLockDigit('5')">5</div>
-          <div class="key" onclick="enterLockDigit('6')">6</div>
-          <div class="key" onclick="enterLockDigit('7')">7</div>
-          <div class="key" onclick="enterLockDigit('8')">8</div>
-          <div class="key" onclick="enterLockDigit('9')">9</div>
-          <div class="key action" onclick="clearLockPin()">پاک</div>
-          <div class="key" onclick="enterLockDigit('0')">0</div>
-          <div class="key action" onclick="delLockDigit()">⌫</div>
+          <div class="key" onclick="enterLockDigit('1')">1</div><div class="key" onclick="enterLockDigit('2')">2</div><div class="key" onclick="enterLockDigit('3')">3</div>
+          <div class="key" onclick="enterLockDigit('4')">4</div><div class="key" onclick="enterLockDigit('5')">5</div><div class="key" onclick="enterLockDigit('6')">6</div>
+          <div class="key" onclick="enterLockDigit('7')">7</div><div class="key" onclick="enterLockDigit('8')">8</div><div class="key" onclick="enterLockDigit('9')">9</div>
+          <div class="key action" onclick="clearLockPin()">پاک</div><div class="key" onclick="enterLockDigit('0')">0</div><div class="key action" onclick="delLockDigit()">⌫</div>
         </div>
       </div>
     </div>
@@ -488,25 +532,25 @@
         <div class="home-widget">
           <div class="widget-top">
             <span class="widget-title" id="home-case-title">🔍 پرونده</span>
-            <span class="clue-pill" id="clue-counter">۰ از ۵ سرنخ</span>
+            <span class="clue-pill" id="clue-counter">۰ از ۶ سرنخ</span>
           </div>
           <div class="widget-desc" id="home-owner-info"></div>
         </div>
         <div class="app-grid">
           <div class="app-icon-wrap" onclick="openApp('chat-app')">
-            <div class="app-icon">💬<span class="badge" id="chat-badge">3</span></div>
+            <div class="app-icon">💬<span class="badge">2</span></div>
             <span class="app-label">پیام‌ها</span>
           </div>
           <div class="app-icon-wrap" onclick="openApp('gallery-app')">
-            <div class="app-icon">🖼️</div>
-            <span class="app-label">گالری</span>
+            <div class="app-icon">🔦</div>
+            <span class="app-label">گالری UV</span>
           </div>
           <div class="app-icon-wrap" onclick="openApp('notes-app')">
             <div class="app-icon">📝</div>
             <span class="app-label">یادداشت‌ها</span>
           </div>
           <div class="app-icon-wrap" onclick="openApp('phone-app')">
-            <div class="app-icon">📞<span class="badge">2</span></div>
+            <div class="app-icon">📞<span class="badge">1</span></div>
             <span class="app-label">تماس‌ها</span>
           </div>
           <div class="app-icon-wrap" onclick="openApp('map-app')">
@@ -514,8 +558,8 @@
             <span class="app-label">ردیاب GPS</span>
           </div>
           <div class="app-icon-wrap" onclick="openApp('vault-app')">
-            <div class="app-icon">🔐</div>
-            <span class="app-label">گاوصندوق</span>
+            <div class="app-icon">💻</div>
+            <span class="app-label">هک گاوصندوق</span>
           </div>
         </div>
       </div>
@@ -538,16 +582,18 @@
 
     <!-- APPS -->
     <div id="chat-app" class="screen">
-      <div class="app-header">
-        <h2 id="chat-header-title">پیام‌ها</h2>
-        <button class="back-btn" id="chat-back-btn" onclick="goHome()">بازگشت</button>
-      </div>
+      <div class="app-header"><h2 id="chat-header-title">پیام‌ها</h2><button class="back-btn" id="chat-back-btn" onclick="goHome()">بازگشت</button></div>
       <div class="app-content" id="chat-content"></div>
     </div>
 
     <div id="gallery-app" class="screen">
-      <div class="app-header"><h2>گالری شواهد</h2><button class="back-btn" onclick="goHome()">بازگشت</button></div>
-      <div class="app-content"><div class="gallery-grid" id="gallery-grid"></div></div>
+      <div class="app-header"><h2>گالری شواهد (مجهز به UV)</h2><button class="back-btn" onclick="goHome()">بازگشت</button></div>
+      <div class="app-content">
+        <div class="card" style="padding:10px 12px;border-color:rgba(168,85,247,0.4);">
+          <div class="card-sub" style="font-size:12px;color:#e9d5ff;">🔦 روی هر عکس بزنید و حالت <strong>نور فرابنفش (UV)</strong> را روشن کنید تا نوشته‌ها و اثرانگشت‌های نامرئی آشکار شوند.</div>
+        </div>
+        <div class="gallery-grid" id="gallery-grid"></div>
+      </div>
     </div>
 
     <div id="notes-app" class="screen">
@@ -610,12 +656,13 @@
 
 <script src="cases.js"></script>
 <script>
-/* ================= AUDIO ENGINE ================= */
+/* ================= AUDIO & RINGTONE ENGINE ================= */
 const AudioCtx = window.AudioContext || window.webkitAudioContext;
 let actx = null;
+function ensureAudio() { if (!actx) actx = new AudioCtx(); if (actx.state === 'suspended') actx.resume(); }
 function playTone(freq, dur = 0.07, type = 'sine', vol = 0.07) {
   try {
-    if (!actx) actx = new AudioCtx();
+    ensureAudio();
     const o = actx.createOscillator(), g = actx.createGain();
     o.type = type; o.frequency.setValueAtTime(freq, actx.currentTime);
     g.gain.setValueAtTime(vol, actx.currentTime);
@@ -624,17 +671,38 @@ function playTone(freq, dur = 0.07, type = 'sine', vol = 0.07) {
   } catch (e) {}
 }
 const sfxClick = () => playTone(640, 0.035, 'triangle', 0.05);
-const sfxError = () => playTone(170, 0.2, 'sawtooth', 0.08);
-const sfxUnlock = () => { playTone(520, 0.08); setTimeout(() => playTone(790, 0.14), 85); };
+const sfxError = () => playTone(165, 0.22, 'sawtooth', 0.09);
+const sfxUnlock = () => { playTone(520, 0.08); setTimeout(() => playTone(820, 0.14), 85); };
 const sfxNotif = () => { playTone(880, 0.09); setTimeout(() => playTone(1174, 0.16), 100); };
+const sfxUV = () => playTone(1240, 0.09, 'sine', 0.04);
+
+let ringInterval = null;
+function startRingtone() {
+  stopRingtone();
+  const ringBurst = () => {
+    playTone(440, 0.35, 'sine', 0.11);
+    playTone(554, 0.35, 'sine', 0.09);
+    setTimeout(() => { playTone(440, 0.35, 'sine', 0.11); playTone(554, 0.35, 'sine', 0.09); }, 420);
+    if (navigator.vibrate) navigator.vibrate([320, 120, 320]);
+  };
+  ringBurst();
+  ringInterval = setInterval(ringBurst, 2200);
+}
+function stopRingtone() {
+  if (ringInterval) { clearInterval(ringInterval); ringInterval = null; }
+  if (navigator.vibrate) navigator.vibrate(0);
+}
 
 /* ================= GLOBAL SAVE STATE ================= */
-let globalSave = JSON.parse(localStorage.getItem('archive404_v2') || 'null') || { xp: 0, cases: {} };
-function saveAll() { localStorage.setItem('archive404_v2', JSON.stringify(globalSave)); }
+let globalSave = JSON.parse(localStorage.getItem('archive404_v3') || 'null') || { xp: 0, cases: {} };
+function saveAll() { localStorage.setItem('archive404_v3', JSON.stringify(globalSave)); }
 
 function getCaseState(id) {
   if (!globalSave.cases[id]) {
-    globalSave.cases[id] = { unlockedPhone: false, unlockedNote: false, unlockedVault: false, calledVM: false, clues: [], solved: false };
+    globalSave.cases[id] = {
+      unlockedPhone: false, unlockedNote: false, hackedVault: false,
+      unlockedVault: false, calledVM: false, gotLiveCall: false, clues: [], solved: false
+    };
   }
   return globalSave.cases[id];
 }
@@ -644,7 +712,6 @@ let currentFilter = 'همه';
 
 /* ================= MAIN MENU ================= */
 const CATEGORIES = ['همه', 'جنایی', 'سایبری', 'مرموز', 'جاسوسی', 'معمایی'];
-
 function getRank(xp) {
   if (xp >= 2000) return 'اسطوره جنایی 👑';
   if (xp >= 1400) return 'شرلوک مدرن 🎩';
@@ -686,7 +753,6 @@ function renderMenu() {
     `;
   }).join('');
 }
-
 function setFilter(cat) { sfxClick(); currentFilter = cat; renderMenu(); }
 
 /* ================= BRIEFING & LAUNCH ================= */
@@ -715,7 +781,7 @@ function enterPhoneOS() {
   document.getElementById('lock-sender').textContent = `💬 ${activeCase.lockNotif.sender}`;
   document.getElementById('lock-notif-text').innerHTML = activeCase.lockNotif.text;
   document.getElementById('home-case-title').textContent = `🔍 ${activeCase.title}`;
-  document.getElementById('home-owner-info').textContent = `گوشی متعلق به ${activeCase.owner} است. چت‌ها، گالری، یادداشت قفل‌دار، صندوق صوتی و گاوصندوق را بررسی کنید.`;
+  document.getElementById('home-owner-info').textContent = `گوشی ${activeCase.owner}. از نور UV گالری، هک فایروال گاوصندوق و تماس‌ها برای کشف حقیقت استفاده کنید.`;
 
   lockInput = '';
   renderLockDots();
@@ -727,6 +793,9 @@ function enterPhoneOS() {
 }
 
 function exitToMenu() {
+  stopHackLoop();
+  stopRingtone();
+  endLiveCall(true);
   sfxClick();
   document.getElementById('phone-os').classList.remove('active');
   document.getElementById('main-menu').style.display = 'flex';
@@ -746,7 +815,7 @@ function addClue(key, label) {
 function updateClueCounter() {
   if (!activeCase) return;
   const st = getCaseState(activeCase.id);
-  document.getElementById('clue-counter').textContent = `${st.clues.length} از ۵ سرنخ`;
+  document.getElementById('clue-counter').textContent = `${st.clues.length} از ۶ سرنخ`;
 }
 let notifTimer = null;
 function showNotif(title, body) {
@@ -762,6 +831,7 @@ function hideNotif() { document.getElementById('notif-banner').classList.remove(
 
 /* ================= NAVIGATION ================= */
 function openApp(screenId) {
+  stopHackLoop();
   sfxClick();
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(screenId).classList.add('active');
@@ -795,16 +865,12 @@ function enterLockDigit(d) {
         lockInput = '';
         renderLockDots();
         goHome();
-        showNotif('🔓 قفل گوشی باز شد', 'تحقیقات را از پیام‌ها و گالری شروع کنید.');
+        showNotif('🔓 قفل گوشی باز شد', 'گالری UV، پیام‌ها و یادداشت‌ها را بررسی کنید.');
       } else {
         sfxError();
         document.querySelectorAll('#lock-dots .pin-dot').forEach(dot => dot.classList.add('error'));
-        document.getElementById('lock-msg').textContent = 'رمز اشتباه است! پیام روی صفحه قفل را دقیق بخوانید.';
-        setTimeout(() => {
-          lockInput = '';
-          renderLockDots();
-          document.getElementById('lock-msg').textContent = 'رمز ۴ رقمی گوشی را وارد کنید';
-        }, 650);
+        document.getElementById('lock-msg').textContent = 'رمز اشتباه است! پیام روی صفحه قفل را بخوانید.';
+        setTimeout(() => { lockInput = ''; renderLockDots(); document.getElementById('lock-msg').textContent = 'رمز ۴ رقمی گوشی را وارد کنید'; }, 650);
       }
     }, 140);
   }
@@ -824,10 +890,7 @@ function renderChatList() {
   document.getElementById('chat-back-btn').onclick = goHome;
   document.getElementById('chat-content').innerHTML = activeCase.chats.map((c, idx) => `
     <div class="card" onclick="openChat(${idx})">
-      <div class="card-row">
-        <span class="card-title">${c.name}</span>
-        <span class="card-meta">${c.time}</span>
-      </div>
+      <div class="card-row"><span class="card-title">${c.name}</span><span class="card-meta">${c.time}</span></div>
       <div class="card-sub" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${c.messages[c.messages.length - 1].t}</div>
     </div>
   `).join('');
@@ -838,13 +901,11 @@ function openChat(idx) {
   document.getElementById('chat-header-title').textContent = c.name;
   document.getElementById('chat-back-btn').onclick = renderChatList;
   document.getElementById('chat-content').innerHTML = `
-    <div class="chat-list">
-      ${c.messages.map(m => `<div class="msg ${m.s}">${m.t}<span class="msg-time">${m.tm}</span></div>`).join('')}
-    </div>
+    <div class="chat-list">${c.messages.map(m => `<div class="msg ${m.s}">${m.t}<span class="msg-time">${m.tm}</span></div>`).join('')}</div>
   `;
 }
 
-/* ================= GALLERY (PROCEDURAL EVIDENCE SVG) ================= */
+/* ================= GALLERY + UV LIGHT ================= */
 function buildEvidenceSVG(p, accent) {
   const bg = p.theme === 'paper' ? '#f1f5f9' : '#0f172a';
   const fg = p.theme === 'paper' ? '#0f172a' : '#f8fafc';
@@ -870,16 +931,66 @@ function renderGallery() {
   `).join('');
 }
 
+let uvActive = false;
+let uvFoundThisPhoto = false;
 function openPhoto(i) {
   sfxClick();
+  uvActive = false;
+  uvFoundThisPhoto = false;
   const p = activeCase.photos[i];
   if (p.clueKey) addClue(p.clueKey, p.clueLabel);
+
+  const uvSecret = i === 0
+    ? `🔍 اثر انگشت مظنون تایید شد!<br>کد مخفی یادداشت: ${activeCase.lockedNote.pin}`
+    : `🧬 جوهر نامرئی UV کشف شد!<br>بخش اول رمز گاوصندوق: ${activeCase.vault.pin.slice(0,2)}**`;
+
   showModal(`
-    <div style="margin-bottom:10px;border-radius:14px;overflow:hidden;">${buildEvidenceSVG(p, activeCase.accent)}</div>
+    <button class="uv-btn" id="uv-toggle-btn" onclick="toggleUV()">🔦 روشن کردن نور فرابنفش (UV)</button>
+    <div class="uv-stage" id="uv-stage">
+      <div class="uv-base">${buildEvidenceSVG(p, activeCase.accent)}</div>
+      <div class="uv-hidden-layer" id="uv-hidden-layer">
+        <div style="font-size:28px;margin-bottom:4px;">🧬</div>
+        <div class="uv-glow-text">${uvSecret}</div>
+      </div>
+      <div class="uv-ring" id="uv-ring"></div>
+    </div>
     <div class="card-row"><span class="card-title">${p.title}</span><span class="card-meta">${p.date}</span></div>
     <p class="card-sub" style="margin:8px 0 15px;">${p.desc}</p>
     <button class="btn-primary" style="width:100%;padding:10px;" onclick="closeModal()">بستن</button>
   `);
+
+  const stage = document.getElementById('uv-stage');
+  const moveUV = (e) => {
+    if (!uvActive) return;
+    const rect = stage.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    document.getElementById('uv-hidden-layer').style.clipPath = `circle(56px at ${x}px ${y}px)`;
+    const ring = document.getElementById('uv-ring');
+    ring.style.left = `${x}px`; ring.style.top = `${y}px`;
+    if (!uvFoundThisPhoto && Math.abs(x - rect.width/2) < 55 && Math.abs(y - rect.height/2) < 45) {
+      uvFoundThisPhoto = true;
+      sfxUV();
+      addClue('uv_scan', `اسکن UV روی «${p.title}» اطلاعات مخفی را آشکار کرد`);
+    }
+  };
+  stage.addEventListener('pointerdown', moveUV);
+  stage.addEventListener('pointermove', moveUV);
+}
+
+function toggleUV() {
+  sfxUV();
+  uvActive = !uvActive;
+  const stage = document.getElementById('uv-stage');
+  const btn = document.getElementById('uv-toggle-btn');
+  stage.classList.toggle('uv-on', uvActive);
+  btn.classList.toggle('active', uvActive);
+  btn.textContent = uvActive ? '🔦 نور UV روشن است (انگشت را روی عکس بکشید)' : '🔦 روشن کردن نور فرابنفش (UV)';
+  if (uvActive) {
+    document.getElementById('uv-hidden-layer').style.clipPath = 'circle(56px at 50% 50%)';
+    const ring = document.getElementById('uv-ring');
+    ring.style.left = '50%'; ring.style.top = '50%';
+  }
 }
 
 /* ================= NOTES ================= */
@@ -914,7 +1025,7 @@ function openNote(idx) {
     showModal(`
       <h3 style="margin-bottom:10px;color:var(--success);">🔓 ${activeCase.lockedNote.title}</h3>
       <p class="card-sub" style="line-height:1.9;">${activeCase.lockedNote.body}</p>
-      <button class="btn-primary" style="width:100%;margin-top:15px;padding:10px;" onclick="closeModal()">متوجه شدم</button>
+      <button class="btn-primary" style="width:100%;margin-top:15px;padding:10px;" onclick="closeNoteAndMaybeCall()">متوجه شدم</button>
     `);
   } else {
     showModal(`
@@ -937,8 +1048,90 @@ function checkNotePin() {
     openNote(1);
   } else {
     sfxError();
-    document.getElementById('note-pin-err').textContent = 'رمز نادرست است! شواهد گالری و پیام‌ها را بررسی کنید.';
+    document.getElementById('note-pin-err').textContent = 'رمز نادرست است! از نور UV در گالری هم می‌توانید کمک بگیرید.';
   }
+}
+
+function closeNoteAndMaybeCall() {
+  closeModal();
+  const st = getCaseState(activeCase.id);
+  if (!st.gotLiveCall) {
+    setTimeout(() => { if (activeCase) triggerLiveCall(); }, 1100);
+  }
+}
+
+/* ================= LIVE INCOMING CALL ================= */
+let callSecInterval = null;
+let callSeconds = 0;
+
+function triggerLiveCall() {
+  const st = getCaseState(activeCase.id);
+  st.gotLiveCall = true;
+  saveAll();
+  stopHackLoop();
+
+  document.getElementById('call-status-tag').textContent = '⚠️ تماس ورودی ناشناس...';
+  document.getElementById('call-name').textContent = 'شماره مخفی (تهدیدکننده)';
+  document.getElementById('call-timer').textContent = 'Private Number';
+  document.getElementById('call-dialogue-area').style.display = 'none';
+  document.getElementById('call-ring-btns').style.display = 'flex';
+  document.getElementById('call-hangup-btn').style.display = 'none';
+  document.getElementById('incoming-call').classList.add('show');
+  startRingtone();
+}
+
+function answerLiveCall() {
+  stopRingtone();
+  sfxUnlock();
+  document.getElementById('call-ring-btns').style.display = 'none';
+  document.getElementById('call-hangup-btn').style.display = 'flex';
+  document.getElementById('call-dialogue-area').style.display = 'block';
+  document.getElementById('call-status-tag').textContent = '🔴 تماس برقرار شد (در حال ضبط)';
+
+  callSeconds = 0;
+  clearInterval(callSecInterval);
+  callSecInterval = setInterval(() => {
+    callSeconds++;
+    const m = String(Math.floor(callSeconds / 60)).padStart(2, '0');
+    const s = String(callSeconds % 60).padStart(2, '0');
+    document.getElementById('call-timer').textContent = `${m}:${s}`;
+  }, 1000);
+
+  document.getElementById('call-speech').innerHTML =
+    `«[صدای تغییریافته و خش‌دار]: می‌دونم قفل یادداشت گوشی <strong>${activeCase.owner}</strong> رو باز کردی! خیلی داری کنجکاوی می‌کنی... قبل از اینکه دیر بشه گوشی رو خاموش کن و بنداز دور!»`;
+
+  document.getElementById('call-choices').innerHTML = `
+    <button class="reply-btn" onclick="replyLiveCall(1)">💬 «تو کی هستی؟ پلیس همین الان داره ردیابیت می‌کنه!»</button>
+    <button class="reply-btn" onclick="replyLiveCall(2)">💬 «تمام مدارک توی گاوصندوقه، دیگه نمی‌تونی پنهانش کنی!»</button>
+  `;
+}
+
+function replyLiveCall(choice) {
+  sfxClick();
+  const speech = document.getElementById('call-speech');
+  if (choice === 1) {
+    speech.innerHTML = `«پلیس؟ هاها! تا وقتی نتونی فایروال گاوصندوق رو هک کنی و رمز ۴ رقمی‌اش رو پیدا کنی، هیچ مدرکی علیه من نداری! وقتت تمومه... [بوق قطع تماس]»`;
+  } else {
+    speech.innerHTML = `«جرئت داری برو سراغ آخرین نقطه ردیاب GPS و گاوصندوق! خودت رو به دردسر ننداز... [بوق قطع تماس]»`;
+  }
+  document.getElementById('call-choices').innerHTML = `
+    <button class="btn-primary" style="width:100%;margin-top:10px;padding:10px;" onclick="endLiveCall()">پایان و ثبت تماس در پرونده</button>
+  `;
+  addClue('live_call', 'تماس تهدیدآمیز زنده از مظنون اصلی ضبط شد');
+}
+
+function declineLiveCall() {
+  stopRingtone();
+  sfxError();
+  document.getElementById('incoming-call').classList.remove('show');
+  showNotif('💬 پیامک از شماره مخفی', 'جواب ندادی؟ فکر نکن با رد تماس می‌تونی از من فرار کنی! دست از این گوشی بردار!');
+}
+
+function endLiveCall(silent = false) {
+  stopRingtone();
+  clearInterval(callSecInterval);
+  document.getElementById('incoming-call').classList.remove('show');
+  if (!silent) sfxClick();
 }
 
 /* ================= PHONE & VOICEMAIL ================= */
@@ -973,12 +1166,8 @@ function makeCall() {
     showModal(`
       <div class="tag green" style="margin-bottom:8px;">🎙️ صندوق صوتی متصل شد (${dialStr})</div>
       <div class="wave-box">
-        <div class="wave-bar" style="animation-delay:0s"></div>
-        <div class="wave-bar" style="animation-delay:0.15s"></div>
-        <div class="wave-bar" style="animation-delay:0.3s"></div>
-        <div class="wave-bar" style="animation-delay:0.45s"></div>
-        <div class="wave-bar" style="animation-delay:0.2s"></div>
-        <div class="wave-bar" style="animation-delay:0.35s"></div>
+        <div class="wave-bar" style="animation-delay:0s"></div><div class="wave-bar" style="animation-delay:0.15s"></div>
+        <div class="wave-bar" style="animation-delay:0.3s"></div><div class="wave-bar" style="animation-delay:0.45s"></div>
       </div>
       <p class="card-sub" style="line-height:1.95;background:rgba(0,0,0,0.35);padding:12px;border-radius:12px;">${activeCase.voicemail.text}</p>
       <button class="btn-primary" style="width:100%;margin-top:14px;padding:10px;" onclick="closeModal()">قطع تماس</button>
@@ -986,14 +1175,14 @@ function makeCall() {
   } else if (dialStr === '110') {
     showModal(`
       <h3 style="margin-bottom:8px;">🚔 مرکز فوریت‌های ۱۱۰</h3>
-      <p class="card-sub">برای اعزام تیم عملیات، گزارش کامل را از طریق اپلیکیشن <strong>گزارش پلیس</strong> در صفحه اصلی ثبت کنید.</p>
+      <p class="card-sub">برای اعزام تیم عملیات، گزارش کامل را از طریق اپلیکیشن <strong>گزارش پلیس</strong> ثبت کنید.</p>
       <button class="btn-primary" style="width:100%;margin-top:14px;padding:10px;" onclick="closeModal()">متوجه شدم</button>
     `);
   } else {
     sfxError();
     showModal(`
       <h3 style="margin-bottom:8px;">تماس برقرار نشد</h3>
-      <p class="card-sub">سیم‌کارت غیرفعال است. تنها شماره صندوق صوتی اینترنتی (ذکرشده در یادداشت‌ها یا چت) و شماره ۱۱۰ در دسترس است.</p>
+      <p class="card-sub">سیم‌کارت غیرفعال است. تنها شماره صندوق صوتی (در یادداشت اول) و ۱۱۰ در دسترس هستند.</p>
       <button class="btn-primary" style="width:100%;margin-top:14px;padding:10px;" onclick="closeModal()">بستن</button>
     `);
   }
@@ -1021,19 +1210,56 @@ function selectPin(i) {
   `;
 }
 
-/* ================= VAULT ================= */
+/* ================= VAULT + HACKING MINI-GAME ================= */
+let hackRAF = null;
+let hackPos = 0;
+let hackDir = 1;
+let hackStage = 0;
+let hackZoneStart = 35;
+let hackZoneWidth = 26;
+
+function stopHackLoop() { if (hackRAF) { cancelAnimationFrame(hackRAF); hackRAF = null; } }
+
 function renderVault() {
+  stopHackLoop();
   const st = getCaseState(activeCase.id);
   const el = document.getElementById('vault-content');
+
+  if (!st.hackedVault) {
+    hackStage = 0;
+    setupHackStage();
+    el.innerHTML = `
+      <div class="hack-panel">
+        <div class="tag green" style="margin-bottom:8px;">FIREWALL v4.2 DETECTED</div>
+        <div class="hack-title">💻 مرحله ۱: هک فایروال گاوصندوق</div>
+        <p class="card-sub" style="font-size:12px;">وقتی نشانگر سفید وارد محدوده سبز شد، دکمه <strong>قفل سیگنال</strong> را بزنید (۳ لایه امنیتی).</p>
+        <div class="hack-layers">
+          <div class="hack-dot" id="hd-0"></div>
+          <div class="hack-dot" id="hd-1"></div>
+          <div class="hack-dot" id="hd-2"></div>
+        </div>
+        <div class="hack-track">
+          <div class="hack-zone" id="hack-zone" style="left:${hackZoneStart}%;width:${hackZoneWidth}%;"></div>
+          <div class="hack-cursor" id="hack-cursor" style="left:0%;"></div>
+        </div>
+        <div class="hack-log" id="hack-log">&gt; Awaiting signal injection [Layer 1/3]...</div>
+        <button class="btn-primary" style="width:100%;background:linear-gradient(135deg,#059669,#0284c7);" onclick="attemptHackLock()">⚡ قفل سیگنال (BREACH)</button>
+      </div>
+    `;
+    startHackLoop();
+    return;
+  }
+
   if (!st.unlockedVault) {
     el.innerHTML = `
       <div class="card" style="text-align:center;padding:22px 15px;">
-        <div style="font-size:42px;margin-bottom:8px;">🔐</div>
-        <h3 style="margin-bottom:8px;">گاوصندوق اسناد محرمانه</h3>
+        <div class="tag green" style="margin-bottom:10px;">✅ فایروال با موفقیت هک شد</div>
+        <div style="font-size:40px;margin-bottom:8px;">🔐</div>
+        <h3 style="margin-bottom:8px;">مرحله ۲: کد رمزگشایی</h3>
         <p class="card-sub" style="margin-bottom:12px;">${activeCase.vault.hint}</p>
         <input type="tel" maxlength="4" id="vault-pin-input" class="pin-input-box" placeholder="----">
         <div id="vault-err" style="color:var(--danger);font-size:12px;margin-bottom:10px;"></div>
-        <button class="btn-primary" style="width:100%;" onclick="checkVaultPin()">رمزگشایی (AES-256)</button>
+        <button class="btn-primary" style="width:100%;" onclick="checkVaultPin()">رمزگشایی نهایی (AES-256)</button>
       </div>
     `;
   } else {
@@ -1050,6 +1276,55 @@ function renderVault() {
     `;
   }
 }
+
+function setupHackStage() {
+  hackZoneWidth = 28 - hackStage * 5;
+  hackZoneStart = 18 + Math.floor(Math.random() * (64 - hackZoneWidth));
+  hackPos = 0;
+  hackDir = 1;
+}
+
+function startHackLoop() {
+  const speed = 1.25 + hackStage * 0.48;
+  const step = () => {
+    const cur = document.getElementById('hack-cursor');
+    if (!cur) return;
+    hackPos += hackDir * speed;
+    if (hackPos >= 96) { hackPos = 96; hackDir = -1; }
+    if (hackPos <= 0) { hackPos = 0; hackDir = 1; }
+    cur.style.left = `${hackPos}%`;
+    hackRAF = requestAnimationFrame(step);
+  };
+  hackRAF = requestAnimationFrame(step);
+}
+
+function attemptHackLock() {
+  const log = document.getElementById('hack-log');
+  if (hackPos >= hackZoneStart - 2 && hackPos <= hackZoneStart + hackZoneWidth) {
+    sfxUnlock();
+    document.getElementById(`hd-${hackStage}`).classList.add('done');
+    hackStage++;
+    if (hackStage >= 3) {
+      stopHackLoop();
+      getCaseState(activeCase.id).hackedVault = true;
+      saveAll();
+      showNotif('💻 فایروال شکسته شد!', 'حالا رمز ۴ رقمی گاوصندوق را وارد کنید.');
+      renderVault();
+    } else {
+      stopHackLoop();
+      setupHackStage();
+      const z = document.getElementById('hack-zone');
+      z.style.left = `${hackZoneStart}%`;
+      z.style.width = `${hackZoneWidth}%`;
+      log.textContent = `> Layer ${hackStage}/3 bypassed! Injecting Layer ${hackStage + 1}...`;
+      startHackLoop();
+    }
+  } else {
+    sfxError();
+    log.textContent = `> ERROR: Signal mismatch! Firewall reset attempt...`;
+  }
+}
+
 function checkVaultPin() {
   const val = document.getElementById('vault-pin-input').value.trim();
   if (val === activeCase.vault.pin) {
@@ -1070,7 +1345,7 @@ function renderCaseApp() {
   const q = activeCase.quiz;
   document.getElementById('case-content').innerHTML = `
     <div class="card">
-      <div class="card-row"><span class="card-title">📋 سرنخ‌های ثبت‌شده</span><span class="clue-pill">${st.clues.length} / 5</span></div>
+      <div class="card-row"><span class="card-title">📋 سرنخ‌های ثبت‌شده</span><span class="clue-pill">${st.clues.length} / 6</span></div>
       <div class="card-sub" style="margin-top:6px;">
         ${st.clues.length ? st.clues.map(c => `• ${c.label}`).join('<br>') : 'هنوز سرنخی ثبت نشده است.'}
       </div>
@@ -1122,7 +1397,7 @@ function submitCase() {
     showModal(`
       <div class="tag amber" style="margin-bottom:10px;">⚖️ پایان خاکستری (${score} از ۳ درست)</div>
       <h2 style="margin-bottom:10px;color:#fcd34d;">خیلی نزدیک بودید!</h2>
-      <p class="card-sub" style="line-height:1.9;">یکی از جزئیات گزارش اشتباه بود و مظنون اصلی فرصت پیدا کرد بخشی از مدارک را امحا کند. دوباره اسناد گاوصندوق و پیام صوتی را چک کنید.</p>
+      <p class="card-sub" style="line-height:1.9;">یکی از جزئیات گزارش اشتباه بود. دوباره اسناد گاوصندوق و پیام صوتی را بررسی کنید.</p>
       <button class="btn-primary" style="width:100%;margin-top:15px;" onclick="closeModal()">اصلاح گزارش</button>
     `);
   } else {
@@ -1130,7 +1405,7 @@ function submitCase() {
     showModal(`
       <div class="tag red" style="margin-bottom:10px;">💀 پایان تاریک — عملیات شکست خورد</div>
       <h2 style="margin-bottom:10px;color:#fca5a5;">رد گم شد!</h2>
-      <p class="card-sub" style="line-height:1.9;">گزارش شما باعث شد تیم پلیس به مسیر اشتباه برود و پرونده بی‌نتیجه بماند. با دقت بیشتری شواهد را بررسی کنید.</p>
+      <p class="card-sub" style="line-height:1.9;">گزارش اشتباه باعث شد مظنون فرار کند. شواهد UV، یادداشت و گاوصندوق را دقیق‌تر چک کنید.</p>
       <button class="btn-primary" style="width:100%;margin-top:15px;" onclick="closeModal()">تلاش مجدد</button>
     `);
   }
@@ -1149,10 +1424,11 @@ function showHintModal() {
   sfxClick();
   const st = getCaseState(activeCase.id);
   let text = '';
-  if (!st.unlockedNote) text = `قدم ۱ (یادداشت قفل‌دار): ${activeCase.lockedNote.hint} (جواب: <strong>${activeCase.lockedNote.pin}</strong>)`;
-  else if (!st.calledVM) text = `قدم ۲ (صندوق صوتی): در بخش تلفن -> شماره‌گیر، شماره <strong>${activeCase.voicemail.number}</strong> را بگیرید.`;
-  else if (!st.unlockedVault) text = `قدم ۳ (گاوصندوق): ${activeCase.vault.hint} (جواب: <strong>${activeCase.vault.pin}</strong>)`;
-  else text = 'تمام قفل‌های این پرونده باز شده‌اند! وارد «گزارش پلیس» شوید و پاسخ نهایی را ثبت کنید.';
+  if (!st.unlockedNote) text = `قدم ۱: در <strong>گالری UV</strong> نور فرابنفش را روشن کنید یا سرنخ یادداشت را ببینید: ${activeCase.lockedNote.hint} (رمز: <strong>${activeCase.lockedNote.pin}</strong>)`;
+  else if (!st.calledVM) text = `قدم ۲: در تلفن -> شماره‌گیر، شماره <strong>${activeCase.voicemail.number}</strong> را بگیرید.`;
+  else if (!st.hackedVault) text = `قدم ۳: وارد <strong>هک گاوصندوق</strong> شوید و هر ۳ لایه فایروال را با زمان‌بندی دقیق قفل کنید.`;
+  else if (!st.unlockedVault) text = `قدم ۴: رمز گاوصندوق = ${activeCase.vault.hint} (جواب: <strong>${activeCase.vault.pin}</strong>)`;
+  else text = 'تمام شواهد کامل است! وارد <strong>گزارش پلیس</strong> شوید و پاسخ نهایی را ثبت کنید.';
   showModal(`
     <h3 style="margin-bottom:10px;color:#fcd34d;">💡 راهنمای هوشمند</h3>
     <p class="card-sub" style="line-height:1.9;">${text}</p>
