@@ -1,0 +1,8 @@
+{
+  "appId": "com.detective.archive404",
+  "appName": "آرشیو ۴۰۴",
+  "webDir": "www",
+  "android": {
+    "backgroundColor": "#04060e"
+  }
+}
